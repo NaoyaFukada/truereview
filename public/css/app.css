@@ -1,0 +1,107 @@
+body,
+html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #dfebf8 !important;
+}
+
+/* Home */
+.card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+.card:hover {
+    transform: translateY(-10px); /* Subtle hover effect */
+}
+.review.card:hover,
+.movie-form.card:hover {
+    transform: none;
+}
+
+.card-img-top {
+    border-radius: 15px 15px 0 0;
+    height: 200px;
+    object-fit: cover; /* Ensures the image fits without distortion */
+}
+.card-title {
+    font-weight: bold;
+    font-size: 1.25rem;
+}
+.card-body p {
+    font-size: 0.9rem;
+}
+.home.rating-stars {
+    font-size: 1.1rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+.home.rating-stars i {
+    color: #ffd700; /* Gold color for stars */
+    margin-right: 2px;
+}
+.review-count {
+    font-size: 0.9rem;
+    color: #6c757d;
+}
+
+/* Detailed Review */
+.main-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    height: 100vh;
+    padding: 20px;
+}
+
+/* Left panel (Movie details) */
+.left-panel {
+    width: 30%;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 15px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    height: auto; /* Ensure it only takes the space it needs */
+}
+
+.left-panel img {
+    width: 100%;
+    border-radius: 15px;
+}
+
+/* Right panel (Scrollable reviews) */
+.right-panel {
+    width: 65%;
+    margin-left: 5%;
+    padding: 20px;
+    overflow-y: auto;
+    height: 100vh; /* Allow full height scrolling */
+}
+
+.review-card {
+    border-radius: 15px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    background-color: white;
+    margin-bottom: 20px;
+}
+
+.rating-stars i {
+    color: #ffd700; /* Gold color for stars */
+}
+
+.scrollable-section {
+    max-height: 80vh; /* Make it scrollable if too many reviews */
+    overflow-y: auto;
+}
+
+.add-review-btn {
+    margin-bottom: 20px;
+}
