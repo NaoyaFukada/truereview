@@ -4,11 +4,11 @@
 @section('content')
 
 <div class="container mt-5">
-    <div class="row justify-content-center">
+    <div class="row justify-content-center gy-4">
         <!-- Left Panel (Movie Info) -->
-        <div class="col-md-5">
-            <div class="review card p-4 shadow-lg" style="background-color: #f8f9fa; border-radius: 15px; max-width: 400px;">
-                <img src="{{ asset('imgs/' . $movie->image_path) }}" alt="{{ $movie->name }}" class="img-fluid" style="border-radius: 15px;">
+        <div class="col-12 col-md-5">
+            <div class="review card p-4 shadow-lg h-100" style="background-color: #f8f9fa; border-radius: 15px;">
+                <img src="{{ asset('imgs/' . $movie->image_path) }}" alt="{{ $movie->name }}" class="img-fluid w-100" style="border-radius: 15px;">
                 <h3 class="mt-3 text-center">{{ $movie->name }}</h3>
                 <p><strong>Production:</strong> {{ $movie->production }}</p>
                 <p><strong>Genre:</strong> {{ $movie->genre }}</p>
@@ -31,8 +31,8 @@
         </div>
 
         <!-- Right Panel (Review Form) -->
-        <div class="col-md-6">
-            <div class="review card p-4 shadow-lg" style="background-color: #f8f9fa; border-radius: 15px; max-width: 500px;">
+        <div class="col-12 col-md-6 mb-md-0 mb-5">
+            <div class="review card p-4 shadow-lg h-100" style="background-color: #f8f9fa; border-radius: 15px;">
                 <h3 class="mb-4 text-center font-weight-bold" style="color: #333;">Write a Review</h3>
 
                 <!-- Display Error Messages -->
@@ -55,19 +55,19 @@
                     @if (session('username'))
                         <div class="mb-3">
                             <label for="username" class="form-label" style="font-weight: bold; font-size: 1rem; color: #555;">Username</label>
-                            <input type="text" name="username" class="form-control" id="username" style="border-radius: 10px; padding: 8px; font-size: 1rem;" value="{{ session('username') }}" readonly>
+                            <input type="text" name="username" class="form-control" id="username" style="border-radius: 10px;" value="{{ session('username') }}" readonly>
                         </div>
                     @else
                         <div class="mb-3">
                             <label for="username" class="form-label" style="font-weight: bold; font-size: 1rem; color: #555;">Username</label>
-                            <input type="text" name="username" class="form-control" id="username" style="border-radius: 10px; padding: 8px; font-size: 1rem;">
+                            <input type="text" name="username" class="form-control" id="username" style="border-radius: 10px;">
                         </div>
                     @endif
 
                     <!-- Rating -->
                     <div class="mb-3">
                         <label for="rating" class="form-label" style="font-weight: bold; font-size: 1rem; color: #555;">Rating (1-5 Stars)</label>
-                        <select name="rating" class="form-select" id="rating" style="border-radius: 10px; padding: 8px; font-size: 1rem; width: 100%; border: 1px solid #ced4da; box-shadow: none;"">
+                        <select name="rating" class="form-select" id="rating" style="border-radius: 10px;">
                             <option value="" selected disabled>Select rating</option>
                             <option value="1">1 - Poor</option>
                             <option value="2">2 - Fair</option>
@@ -80,12 +80,12 @@
                     <!-- Review Text -->
                     <div class="mb-3">
                         <label for="review_text" class="form-label" style="font-weight: bold; font-size: 1rem; color: #555;">Review Text</label>
-                        <textarea name="review_text" class="form-control" id="review_text" rows="5" style="border-radius: 10px; padding: 8px; font-size: 1rem;"></textarea>
+                        <textarea name="review_text" class="form-control" id="review_text" rows="5" style="border-radius: 10px;"></textarea>
                     </div>
 
                     <!-- Submit Button centered -->
                     <div class="d-flex justify-content-center">
-                        <button type="submit" class="btn btn-primary btn-lg" style="border-radius: 10px; padding: 10px 30px; font-size: 1.1rem;">Submit Review</button>
+                        <button type="submit" class="btn btn-primary btn-lg" style="border-radius: 10px;">Submit Review</button>
                     </div>
                 </form>
             </div>
@@ -103,7 +103,5 @@
         });
     </script>
 @endif
-
-
 
 @endsection

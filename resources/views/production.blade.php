@@ -1,30 +1,25 @@
-<!-- This is a page to list all movies from a specified production -->
-
 @extends('layouts.master')
 
 @section('content')
 <div class="container mt-3" style="padding-bottom: 30px">
   
-  <!-- Sorting Form and Title in the Same Row -->
-  <div class="row mb-4">
-    <!-- Production Title -->
-    <div class="col-md-6 d-flex align-items-end">
+  <!-- Title and Inline Sorting Form for Screens >= 992px -->
+  <div class="row mb-4 d-none d-lg-flex align-items-end">
+    <div class="col-md-6">
       <h2 class="font-weight-bold mb-0">{{ $production_name }}</h2>
     </div>
-    
-    <!-- Sorting Form -->
     <div class="col-md-6">
       <form method="GET" action="{{ route('production', ['name' => urlencode($production_name)]) }}" class="d-flex justify-content-end">
-        <div class="col-auto">
-          <label for="sort_by" class="form-label" style="font-size: 0.9rem;">Sort By:</label>
+        <div class="col-auto pe-3">
+          <label for="sort_by" class="form-label mb-0" style="font-size: 0.9rem;">Sort By:</label>
           <select name="sort_by" id="sort_by" class="form-control form-control-sm">
             <option value="review_count" {{ request('sort_by') == 'review_count' ? 'selected' : '' }}>Number of Reviews</option>
             <option value="average_rating" {{ request('sort_by') == 'average_rating' ? 'selected' : '' }}>Average Rating</option>
           </select>
         </div>
 
-        <div class="col-auto">
-          <label for="order" class="form-label" style="font-size: 0.9rem;">Order:</label>
+        <div class="col-auto pe-3">
+          <label for="order" class="form-label mb-0" style="font-size: 0.9rem;">Order:</label>
           <select name="order" id="order" class="form-control form-control-sm">
             <option value="asc" {{ request('order') == 'asc' ? 'selected' : '' }}>Ascending</option>
             <option value="desc" {{ request('order', 'desc') == 'desc' ? 'selected' : '' }}>Descending</option>
@@ -32,14 +27,57 @@
         </div>
 
         <div class="col-auto d-flex align-items-end">
-          <button type="submit" class="btn btn-primary btn-sm">Sort</button>
+          <button type="submit" class="btn btn-outline-primary btn-sm">Apply</button>
         </div>
       </form>
     </div>
   </div>
 
-  <div class="row row-cols-1 row-cols-md-3" style="row-gap: 30px;">
-    
+  <!-- Filter Button for Screens < 992px -->
+  <div class="d-flex d-lg-none justify-content-between align-items-center mb-4">
+    <h2 class="font-weight-bold mb-0">{{ $production_name }}</h2>
+    <button type="button" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#filterModal">
+      <i class="fas fa-filter"></i> Filter
+    </button>
+  </div>
+
+  <!-- Filter Modal for Smaller Screens -->
+  <div class="modal fade" id="filterModal" tabindex="-1" aria-labelledby="filterModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="filterModalLabel">Filter Options</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form method="GET" action="{{ route('production', ['name' => urlencode($production_name)]) }}">
+            <div class="mb-3">
+              <label for="sort_by_modal" class="form-label" style="font-size: 0.9rem;">Sort By:</label>
+              <select name="sort_by" id="sort_by_modal" class="form-control">
+                <option value="review_count" {{ request('sort_by') == 'review_count' ? 'selected' : '' }}>Number of Reviews</option>
+                <option value="average_rating" {{ request('sort_by') == 'average_rating' ? 'selected' : '' }}>Average Rating</option>
+              </select>
+            </div>
+
+            <div class="mb-3">
+              <label for="order_modal" class="form-label" style="font-size: 0.9rem;">Order:</label>
+              <select name="order" id="order_modal" class="form-control">
+                <option value="asc" {{ request('order') == 'asc' ? 'selected' : '' }}>Ascending</option>
+                <option value="desc" {{ request('order', 'desc') == 'desc' ? 'selected' : '' }}>Descending</option>
+              </select>
+            </div>
+
+            <div class="text-end">
+              <button type="submit" class="btn btn-primary btn-sm">Apply</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Movies Grid -->
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3" style="row-gap: 30px;">
     <!-- Loop through each movie and display its details -->
     @foreach($movies as $movie)
     <div class="col">
@@ -68,7 +106,6 @@
       </a>
     </div>
     @endforeach
-
   </div>
 </div>
 @endsection

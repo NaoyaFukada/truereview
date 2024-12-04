@@ -106,11 +106,6 @@ body {
     color: #ffd700; /* Gold color for stars */
 }
 
-.scrollable-section {
-    max-height: 80vh; /* Make it scrollable if too many reviews */
-    overflow-y: auto;
-}
-
 .add-review-btn {
     margin-bottom: 20px;
 }

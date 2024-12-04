@@ -54,7 +54,6 @@
                         <label for="image" class="form-label" style="font-weight: bold; font-size: 1rem; color: #555;">Movie Image</label>
                         <div class="custom-file">
                             <input type="file" name="image" class="custom-file-input" id="image" accept="image/*">
-                            <label class="custom-file-label" for="image">Choose file</label>
                         </div>
                     </div>
 
@@ -68,18 +67,6 @@
         </div>
     </div>
 </div>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        // Add an event listener for file input change to display the filename
-        var input = document.querySelector('.custom-file-input');
-        input.addEventListener('change', function () {
-            var fileName = input.files[0].name;
-            var label = document.querySelector('.custom-file-label');
-            label.textContent = fileName;
-        });
-    });
-</script>
 
 
 @endsection
