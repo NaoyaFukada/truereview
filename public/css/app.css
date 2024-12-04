@@ -11,15 +11,24 @@ body {
 }
 
 /* Home */
+.modal-body label {
+    font-size: 0.9rem; /* Ensure consistent label size in modal */
+}
+.modal-body select {
+    font-size: 0.9rem; /* Match font size with sorting form */
+}
+
 .card {
     border: none;
     border-radius: 15px;
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease-in-out;
 }
+
 .card:hover {
     transform: translateY(-10px); /* Subtle hover effect */
 }
+
 .review.card:hover,
 .movie-form.card:hover {
     transform: none;
