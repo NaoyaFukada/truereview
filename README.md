@@ -29,3 +29,13 @@ The system employs multiple criteria to identify potentially fake reviews:
 5. Length and Repetition Check: Reviews that are either too short or too long are not allowed, as well as too many repetitive words in a review.
 
 If even one of the predefined criteria is not met, the system flags the review as potentially fake and notifies the user with an error message indicating the issue.
+
+# Key Technologies Used
+
+-   **Laravel**: PHP Framework used for routing and templating features.
+
+-   **Bootstrap**: CSS Library used for responsive and intuitive UI design.
+
+-   **SQlite**: Relational database management system that uses SQL to interact with the database.
+
+-   **Font Awesome**: Used for icons.
