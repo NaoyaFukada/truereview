@@ -39,3 +39,33 @@ The system employs multiple criteria to identify potentially fake reviews:
 5. Length and Repetition Check: Reviews that are either too short or too long are not allowed, as well as too many repetitive words in a review.
 
 If even one of the predefined criteria is not met, the system flags the review as potentially fake and notifies the user with an error message indicating the issue.
+
+# Security measures
+
+1. **HTML Sanitization**
+
+Laravel automatically escapes user input when using Blade's escaped syntax ({{ $variable }}). This ensures that potentially harmful content, such as <script>alert('xss')</script>, is displayed as plain text rather than executed as code, thereby preventing Cross-Site Scripting (XSS) attacks.
+
+> **Note:** If you need to display raw HTML, use Blade's unescaped syntax ({!! $variable !!}). However, this should only be used with trusted data, as it bypasses automatic escaping and may expose your application to XSS vulnerabilities.
+
+2. **SQL Sanitization**
+
+In this application, to prevent **SQL Injection**, which could allow malicious activities, the following approach is used. By using **parameterized queries**, user input is escaped automatically before being executed, ensuring the database is not exposed to harmful commands:
+
+```php
+$sql = "
+    UPDATE reviews
+    SET rating = ?, review_text = ?
+    WHERE user_id = ?
+    AND movie_id = ?";
+
+DB::update($sql, array($rating, $review_text, $user_id, $movie_id));
+```
+
+3. **Prevents CSRF Attacks**
+
+Laravel prevents Cross-Site Request Forgery (CSRF) attacks by requiring a CSRF token for every form submission that makes modifications to the server. By including `@csrf` in forms throughout this application, Laravel generates a unique token for each user session. This token is embedded in forms and validated on the server upon submission.
+
+This mechanism ensures that only requests originating from this application are accepted, effectively blocking malicious attempts from external sites.
+
+> **Why It Works**: Laravel's CSRF protection relies on the seamless integration between its frontend and backend, allowing it to securely manage session data and tokens. This approach is particularly effective because the same application handles both aspects, ensuring reliable token validation.
